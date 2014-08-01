@@ -1,0 +1,12 @@
+language: ruby
+rvm:
+- 2.1.2
+before_install:
+- gem install rake
+- gem install padrino
+before_script:
+- padrino rake ar:create
+- padrino rake ar:migrate
+- padrino rake seed
+script:
+- bundle exec rspec

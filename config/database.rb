@@ -13,41 +13,21 @@
 #     :socket    => '/tmp/mysql.sock'
 #   }
 #
-ActiveRecord::Base.configurations[:development] = {
-  :adapter   => 'postgresql',
-  :database  => 'test_blog_development',
-  :username  => 'postgres',
-  :password  => 'postgres',
-  :host      => 'localhost',
-  :port      => 5432
-
-}
-
-# ActiveRecord::Base.configurations[:production] = {
-#     :adapter  => 'postgresql',
-#     :encoding => 'utf8',
-#     :database => 'dep4s2k494odl4',
-#     :username => 'oorkstaapietgj',
-#     :password => 'HwWuVQR4BP29jGMGmzYIzbuaRP',
-#     :host     => 'ec2-23-23-244-144.compute-1.amazonaws.com'
-# }
-ActiveRecord::Base.configurations[:production] = {
-    :adapter  => 'postgresql',
-    :encoding => 'utf8',
-    :database => 'dab5gft1l9id5m',
-    :username => 'vyntvqrnsfvngs',
-    :password => 'OeDmjfap2Jh6UWuMgXLL3iNMuM',
-    :host     => 'ec2-54-197-237-171.compute-1.amazonaws.com'
-}
-
 ActiveRecord::Base.configurations[:test] = {
   :adapter   => 'postgresql',
-  :database  => 'test_blog_test',
+  :encoding  => 'utf8',
+  :database  => 'copypadsag_test',
+  :pool      => 5,
   :username  => 'postgres',
-  :password  => 'postgres',
-  :host      => 'localhost',
-  :port      => 5432
-
+  :password  => ''
+}
+ActiveRecord::Base.configurations[:production] = {
+    :adapter   => 'postgresql',
+    :encoding  => 'utf8',
+    :database  => 'copypadsag_production',
+    :pool      => 5,
+    :username  => 'postgres',
+    :password  => ''
 }
 
 # Setup our logger

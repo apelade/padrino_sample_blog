@@ -19,10 +19,11 @@ SampleBlog::App.controllers :posts do
   #   'Hello world!'
   # end
   
-  get :index do
+  get :index, :provides => [:html, :rss, :atom] do
     @posts = Post.all#(:order => 'created_at desc')
     render 'posts/index'
   end
+
 
   get :show do
     @post = Post.find_by_id(params[:id])

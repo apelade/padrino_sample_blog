@@ -23,22 +23,36 @@ ActiveRecord::Base.configurations[:development] = {
 
 }
 
-# ActiveRecord::Base.configurations[:production] = {
-#     :adapter  => 'postgresql',
-#     :encoding => 'utf8',
-#     :database => 'dep4s2k494odl4',
-#     :username => 'oorkstaapietgj',
-#     :password => 'HwWuVQR4BP29jGMGmzYIzbuaRP',
-#     :host     => 'ec2-23-23-244-144.compute-1.amazonaws.com'
-# }
-ActiveRecord::Base.configurations[:production] = {
-    :adapter  => 'postgresql',
-    :encoding => 'utf8',
-    :database => 'dab5gft1l9id5m',
-    :username => 'vyntvqrnsfvngs',
-    :password => 'OeDmjfap2Jh6UWuMgXLL3iNMuM',
-    :host     => 'ec2-54-197-237-171.compute-1.amazonaws.com'
-}
+begin
+  uri = URI.parse(ENV["DATABASE_URL"])
+  adapter = uri.scheme
+  adapter = "postgresql" if adapter == "postgres"
+
+  ActiveRecord::Base.configurations[:production] = {
+      :adapter  => adapter,
+      :encoding => 'utf8',
+      :database => (uri.path || "").split("/")[1],
+      :pool      => 5,
+      :username => uri.user,
+      :password => uri.password,
+      :host     => uri.host,
+      :port     => uri.port
+  }
+rescue URI::InvalidURIError
+  puts "no ENV[DATABASE_URL] try ENV[PG_USER] etc"
+
+  ActiveRecord::Base.configurations[:production] = {
+      :adapter   => 'postgresql',
+      :encoding  => 'utf8',
+      :database  =>  ENV["PG_DATABASE"],
+      :pool      => 5,
+      :username  => ENV["PG_USER"],
+      :password  => ENV["PG_PASSWORD"],
+      :host      => ENV["PG_HOST"],
+      :port      => ENV["PG_PORT"]
+  }
+end
+
 
 ActiveRecord::Base.configurations[:test] = {
   :adapter   => 'postgresql',

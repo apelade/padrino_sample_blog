@@ -13,15 +13,15 @@
 #     :socket    => '/tmp/mysql.sock'
 #   }
 #
-# ActiveRecord::Base.configurations[:development] = {
-#   :adapter   => 'postgresql',
-#   :database  => 'test_blog_development',
-#   :username  => 'postgres',
-#   :password  => 'postgres',
-#   :host      => 'localhost',
-#   :port      => 5432
-#
-# }
+ActiveRecord::Base.configurations[:development] = {
+  :adapter   => 'postgresql',
+  :database  => 'padrino_sample_blog_development',
+  :username  => 'postgres',
+  :password  => 'postgres',
+  :host      => 'localhost',
+  :port      => 5432
+
+}
 
 # begin
 #   uri = URI.parse(ENV["DATABASE_URL"])
@@ -53,15 +53,15 @@
 # end
 
 
-# ActiveRecord::Base.configurations[:test] = {
-#   :adapter   => 'postgresql',
-#   :database  => 'test_blog_test',
-#   :username  => 'postgres',
-#   :password  => 'postgres',
-#   :host      => 'localhost',
-#   :port      => 5432
-#
-# }
+ActiveRecord::Base.configurations[:test] = {
+  :adapter   => 'postgresql',
+  :database  => 'padrino_sample_blog_test',
+  :username  => 'postgres',
+  :password  => 'postgres',
+  :host      => 'localhost',
+  :port      => 5432
+
+}
 
 # Setup our logger
 ActiveRecord::Base.logger = logger
